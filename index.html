@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Você 💕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #fff0f5, #fdeaea);
+      font-family: 'Arial', sans-serif;
+      color: #4b2e2e;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      animation: fadeInPage 1.2s ease-in-out;
+    }
+
+    @keyframes fadeInPage {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 20px;
+      z-index: 2;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 2.4em;
+      margin-bottom: 20px;
+      color: #7b4f3d;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 12px auto;
+    }
+
+    .botao {
+      background-color: #d68c8c;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    .botao:hover {
+      background-color: #c17373;
+    }
+
+    #nao {
+      position: relative;
+    }
+
+    .conteudo {
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #mensagemFinal {
+      margin-top: 25px;
+      font-size: 1.3em;
+      color: #6a4034;
+      white-space: pre-wrap;
+      text-align: center;
+    }
+
+    .cora {
+      font-size: 2em;
+      color: brown;
+    }
+
+    #extraTexto {
+      display: none;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 5px;
+      right: 10px;
+      font-size: 0.8em;
+      color: #a87c6d;
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      color: #e06666;
+      animation: fall 8s linear infinite;
+      font-size: 22px;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      .botao {
+        font-size: 1em;
+        padding: 10px 20px;
+      }
+
+      #mensagemFinal {
+        font-size: 1.1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Primeira pergunta -->
+  <div class="centered" id="pergunta">
+    <h2>Ei, posso te mostrar algo do coração? 💌</h2>
+    <button class="botao" onclick="mostrarConteudo()">Sim</button>
+    <button class="botao" id="nao" onmouseover="fugir()">Não</button>
+  </div>
+
+  <!-- Conteúdo revelado -->
+  <div class="centered conteudo" id="conteudo">
+    <h1>Oi, minha pessoa favorita 💕</h1>
+    <p>Tem algo em você que me faz sorrir só de lembrar...</p>
+    <p>Nosso "te amo" não é comum. É conexão, é <strong>yeatoe</strong> <span class="cora">🤎</span></p>
+
+    <button class="botao" onclick="mostrarMais()">Ver mais</button>
+    <div id="extraTexto">
+      <p>É um sentimento que vai além das palavras.</p>
+      <p>É saber que mesmo em silêncio, a gente se entende.</p>
+      <p>É aquele friozinho bom, só de imaginar seu nome na notificação . Yeatoe 🤎 . Você é a parte mais bonita dos meus dias.Mesmo sem precisar dizer tudo, eu sinto tudo isso . e isso... é só nosso.
+    </div>
+
+    <div id="mensagemFinal"></div>
+  </div>
+
+  <footer>Com amor: DAVI CAIK</footer>
+
+  <script>
+    function mostrarConteudo() {
+      document.getElementById('pergunta').style.display = 'none';
+      document.getElementById('conteudo').style.display = 'block';
+      
+    }
+
+    function mostrarMais() {
+      document.getElementById('extraTexto').style.display = 'block';
+    }
+
+    function fugir() {
+      const btn = document.getElementById('nao');
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      btn.style.position = 'absolute';
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+    }
+
+    function escreverMensagem(texto) {
+      const el = document.getElementById("mensagemFinal");
+      let i = 0;
+      const intervalo = setInterval(() => {
+        el.textContent += texto[i];
+        i++;
+        if (i >= texto.length) clearInterval(intervalo);
+      }, 45);
+    }
+
+    // Corações caindo
+    function criarCoração() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.textContent = '❤️';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(criarCoração, 300);
+  </script>
+</body>
+</html>

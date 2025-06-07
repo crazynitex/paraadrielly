@@ -5,18 +5,14 @@
   <title>Para Você Adrielly 💕</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: linear-gradient(to bottom right, #fff0f5, #fdeaea);
       font-family: 'Arial', sans-serif;
       color: #4b2e2e;
       height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
       animation: fadeInPage 1.2s ease-in-out;
     }
@@ -74,22 +70,26 @@
       animation: fadeIn 1s ease-in-out;
     }
 
-    #mensagemFinal {
-      margin-top: 25px;
-      font-size: 1.3em;
-      color: #6a4034;
-      white-space: pre-wrap;
-      text-align: center;
+    #extraTexto {
+      display: none;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    #fotoCarta {
+      display: none;
+      margin-top: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #fotoCarta img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
     .cora {
       font-size: 2em;
       color: brown;
-    }
-
-    #extraTexto {
-      display: none;
-      animation: fadeIn 0.8s ease-in-out;
     }
 
     footer {
@@ -117,59 +117,48 @@
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      p {
-        font-size: 1em;
-      }
-
-      .botao {
-        font-size: 1em;
-        padding: 10px 20px;
-      }
-
-      #mensagemFinal {
-        font-size: 1.1em;
-      }
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
+      .botao { font-size: 1em; padding: 10px 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Primeira pergunta -->
   <div class="centered" id="pergunta">
     <h2>Ei, posso te mostrar algo do coração? 💌</h2>
     <button class="botao" onclick="mostrarConteudo()">Sim</button>
     <button class="botao" id="nao" onmouseover="fugir()">Não</button>
   </div>
 
-  <!-- Conteúdo revelado -->
   <div class="centered conteudo" id="conteudo">
     <h1>Oiii, minha chatinha favorita 💕</h1>
-    <p> Se Tem algo em que me faz sorrir e lembrar de vc...</p>
+    <p>Se tem algo que me faz sorrir, é lembrar de você.</p>
     <p>Nosso "te amo" não é comum. É conexão, é <strong>yeatoe</strong> <span class="cora">🤎</span></p>
 
     <button class="botao" onclick="mostrarMais()">Ver mais</button>
+
     <div id="extraTexto">
       <p>É um sentimento que vai além das palavras.</p>
       <p>É saber que mesmo em silêncio, a gente se entende.</p>
-      <p>É aquele friozinho bom, só de imaginar seu nome na notificação .  .Você é a parte mais bonita dos meus dias.Mesmo sem precisar dizer tudo, eu sinto tudo isso . e isso... yatoe🤎.
-    </div>
+      <p>É aquele friozinho bom  , só de ver seu nome na notificação.</p>
+      <p>Sou muito grato a Deus por ter cruzado os nossos caminhos e o nosso destino.</p>
+<p>Sou grato por ter você como amiga. Você é muito especial para mim.</p>
+<p>Sempre guardarei você no meu coração, nos meus pensamentos e nas minhas orações.</p>
+<p>Eu fiz isso para expressar o quanto você é importante na minha vida e tudo o que você faz por mim, mesmo sem saber...</p>
+ Você é o meu tudo. Yatoe 🤎</p>
 
-    <div id="mensagemFinal"></div>
+      <button class="botao" onclick="mostrarFoto()">📩 Ver a cartinha</button>
+
+      <div id="fotoCarta">
+        <img src="https://cdn.discordapp.com/attachments/1327825609056976916/1380721402448969750/eu_e_a_dry.jpg?ex=6844e882&is=68439702&hm=367579c16f98bcc5ae91292ab99d469bb1e4c2ec8c44b64be5028e189b00cd00&" alt="Nossa foto juntos">
+      </div>
+    </div>
   </div>
 
   <footer>Com amor: DAVI CAIK</footer>
@@ -178,11 +167,14 @@
     function mostrarConteudo() {
       document.getElementById('pergunta').style.display = 'none';
       document.getElementById('conteudo').style.display = 'block';
-      
     }
 
     function mostrarMais() {
       document.getElementById('extraTexto').style.display = 'block';
+    }
+
+    function mostrarFoto() {
+      document.getElementById('fotoCarta').style.display = 'block';
     }
 
     function fugir() {
@@ -194,26 +186,13 @@
       btn.style.top = `${y}px`;
     }
 
-    function escreverMensagem(texto) {
-      const el = document.getElementById("mensagemFinal");
-      let i = 0;
-      const intervalo = setInterval(() => {
-        el.textContent += texto[i];
-        i++;
-        if (i >= texto.length) clearInterval(intervalo);
-      }, 45);
-    }
-
-    // Corações caindo
     function criarCoração() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.style.left = Math.random() * 100 + "vw";
       heart.textContent = '❤️';
       document.body.appendChild(heart);
-      setTimeout(() => {
-        heart.remove();
-      }, 8000);
+      setTimeout(() => heart.remove(), 8000);
     }
 
     setInterval(criarCoração, 300);
